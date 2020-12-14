@@ -1,0 +1,107 @@
+<style>
+    @font-face {
+	font-family: pixel;
+	src: url('pixel.ttf');
+}
+.bbgun {
+    font-family: pixel;
+    color: white;
+}
+body {
+  cursor: url('cur.gif'), auto;	
+}
+.ex2 {
+  font-size: 50px;
+}
+progress {
+  border: none;
+}
+h1 {
+    font-family: pixel;
+}
+
+p {
+    font-family: pixel;
+}
+
+input {
+    font-family: pixel;
+}
+textarea {
+     font-family: pixel;
+}
+body
+{
+    background-image: url('bg.jpg');
+    background-size:100% auto;
+}
+button {
+    background-image: url('noclick.png');
+    border-radius: 4px;
+    cursor: url('clicker.png'), auto;
+    border: none;
+}
+button:hover {
+    background-image: url('click.png');
+    border-radius: 4px;
+    border: none;
+}
+</style>
+
+
+<title>BSOD Maker</title>
+<link rel="shortcut icon" href="pic.ico">
+<div class="win7" id="settings">
+<h1>Bsod Background Color</h1>
+<input id="bbgc" type="color">
+<h1>Bsod Text</h1>
+<textarea id="btxt"></textarea>
+<h1>Bsod Face</h1>
+<input type="text" id="emoji" placeholder="put an emoticon here">
+<br>
+<h1>Bsod Load Time</h1>
+<input id="speedd" type="number" placeholder="Milliseconds" value="1000">
+<br>
+<br>
+<button onclick="bsod()">Create</button>
+</div>
+<div class="bbgun" id="soft">
+    <p class="ex2" id="etext">:(</h1>
+    <h1 id="btext">bsod text</h1>
+    <h1 id="pro">We Are Finding Errors To Fix 0%</h1>                
+</div>      
+<script>
+    var config = document.getElementById("settings");
+    var bsd = document.getElementById("soft")
+    bsd.style.display = "none"
+    config.style.display = "block"
+</script>
+<script>
+    var speedd = document.getElementById("speedd")
+    var progress = document.getElementById("pro")
+    var second = 0
+    function bsod()
+    {
+        var color = document.getElementById("bbgc").value
+        var bdiv = document.getElementById("btext")
+        var bdiv2 = document.getElementById("etext")
+        var btexxt = document.getElementById("btxt").value
+        var etexxt = document.getElementById("emoji").value
+        document.body.style.backgroundImage = "url('https://i.imgur.com/508Y6yX.png')";
+        document.body.style.backgroundColor = color;
+        bdiv.innerHTML = btexxt
+        bdiv2.innerHTML = etexxt
+        var config = document.getElementById("settings");
+        var bsd = document.getElementById("soft")
+        bsd.style.display = "block"
+        config.style.display = "none"
+        setInterval(load, speedd.value);
+    }
+    function load(){
+    if (second > 99) {
+        second = 0
+    }
+     ++second;
+     progress.innerHTML = "We Are Finding Errors To Fix " + second + "%"
+    }
+</script>

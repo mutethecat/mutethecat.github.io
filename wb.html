@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<style>
+  body {
+    background-color: darkgray;
+  }
+  div {
+    height: 400;
+    width: 300;
+  }
+  .nbutton
+  {
+    background-color: lime;
+    width: 50;
+    width: 25;
+    cursor: pointer;
+  }
+  .nbutton:hover
+  {
+    background-color: purple;
+    width: 50;
+    width: 25;
+    cursor: pointer;
+  }
+  .ebutton
+  {
+    background-color: lime;
+    width: 100;
+    width: 50;
+    cursor: pointer;
+  }
+  .ebutton:hover
+  {
+    background-color: lightblue;
+    width: 100;
+    width: 50;
+    cursor: pointer;
+  }
+</style>
+<button class="nbutton" onclick="hadd()">Add Header</button>
+<br>
+<br>
+<button class="nbutton" onclick="iadd()">Add Image</button>
+<br>
+<br>
+<button class="nbutton" onclick="tadd()">Add Text</button>
+<br>
+<br>
+<button class="nbutton" onclick="vadd()">Add Video Player</button>
+<br>
+<br>
+<button class="nbutton" onclick="aadd()">Add Audio Player</button>
+<br>
+<br>
+<button class="nbutton" onclick="dadd()">Add Spacing</button>
+<br>
+<br>
+<br>
+<button class="ebutton" onclick="ex()">Export html</button>
+<script>
+  localStorage.setItem("code", "<style> h1 { font-family: arial; } p { font-family: arial; } </style>")
+  localStorage.setItem("filename", "")
+</script>
+<script>
+  localStorage.setItem("funnum", "a")
+</script>
+<script>
+  function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
+function hadd()
+{
+var curtext = localStorage.getItem("code")
+var text = prompt("Header Text", "");
+var code = curtext + "<h1>" + text + "</h1>"
+localStorage.setItem("code", code);
+
+}
+function tadd()
+{
+var curtext = localStorage.getItem("code")
+var text = prompt("Paragraph Text", "");
+var code = curtext + "<p>" + text + "</p>"
+localStorage.setItem("code", code);
+
+}
+function iadd()
+{
+var curtext = localStorage.getItem("code")
+var text = prompt("Image URL", "");
+var code = curtext + "<img src='" + text + "' height='200' height='200'>"
+localStorage.setItem("code", code);
+}
+function dadd()
+{
+var curtext = localStorage.getItem("code")
+var code = curtext + "<br>"
+localStorage.setItem("code", code);
+}
+function badd()
+{
+var curtext = localStorage.getItem("code")
+var textt = prompt("Button Text", "")
+var urll = prompt("Button Url", "")
+var fn = localStorage.getItem("funnum")
+localStorage.setItem("funnum", fn + "b")
+var code = curtext + "<button onclick='" + fn + "()'>" + textt + "</button> <script> function " + fn + "() { window.open'" + urll + "' } <" + "/" + "script>"
+localStorage.setItem("code", code);
+}
+function aadd() 
+{
+var curtext = localStorage.getItem("code")
+var text = prompt("Audio URL", "");
+var code = curtext + "<audio controls> <source src='" + text +  "' type='audio/mp3'> </audio>"
+localStorage.setItem("code", code);
+}
+function vadd() 
+{
+var curtext = localStorage.getItem("code")
+var text = prompt("Video URL", "");
+if (text != "null")
+{
+var code = curtext + "<video width='200' height='200' controls> <source src='" + text + "' type='video/mp4'> </video>"
+localStorage.setItem("code", code);
+    }
+}
+function ex()
+{
+  var fname = localStorage.getItem("filename")
+  if (fname == "")
+  {
+  var curtext = localStorage.getItem("code")
+  var filename = prompt("Enter A Name For Your File", "")
+  var joinedtxt = filename + ".html"
+  localStorage.setItem("filename", filename)
+  download(joinedtxt, curtext)
+  }
+  else 
+  {
+  var curtext = localStorage.getItem("code")
+  var joinedtxt = localStorage.getItem("filename") + ".html"
+  download(joinedtxt, curtext)
+  }
+}
+</script>
